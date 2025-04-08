@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"sfx_fireball",
+  "audioGroupId":{
+    "name":"audiogroup_sfx",
+    "path":"audiogroups/audiogroup_sfx",
+  },
+  "bitDepth":0,
+  "bitRate":64,
+  "compression":0,
+  "conversionMode":0,
+  "duration":0.131474,
+  "name":"sfx_fireball",
+  "parent":{
+    "name":"SFX",
+    "path":"folders/Sounds/SFX.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"sfx_fireball.wav",
+  "type":1,
+  "volume":0.8,
+}

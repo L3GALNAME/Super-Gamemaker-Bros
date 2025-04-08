@@ -1,0 +1,37 @@
+LIST OF THINGS TO MAKE MAR-O
+20/ 23 : 87%
+
+// Physics - DONE //
+
+// Animate //
+//// Run						// DONE
+//// Crouch						// DONE
+//// Small and big states		// DONE
+//// Transition to small/big	// DONE
+//// Transition to fire			// DONE
+//// Death animation			// DONE
+
+// Defeat enemies //
+//// Jump physics				// DONE
+//// Side hurts					// DONE
+//// Spike enemies				// DONE
+//// Kill with fyre				// DONE
+//// Shells						// DONE
+//// Brick flips				// DONE
+
+// Collisions - DONE //
+//// Basic tiles				// DONE
+//// Hit bricks					// DONE
+//// Bricks spin coins			// DONE
+//// Go down pipes				// DONE
+
+// Level Complete //
+//// Grab pole					// DONE
+//// Slide down					// DONE
+//// Walk into castle			// DONE
+
+// Transitions //
+//// Main Menu					// :(
+//// Level start screen			// :(
+//// Fireworks					// :(
+

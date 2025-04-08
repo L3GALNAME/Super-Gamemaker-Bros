@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"mus_warning",
+  "audioGroupId":{
+    "name":"audiogroup_mus2",
+    "path":"audiogroups/audiogroup_mus2",
+  },
+  "bitDepth":0,
+  "bitRate":64,
+  "compression":0,
+  "conversionMode":0,
+  "duration":2.931383,
+  "name":"mus_warning",
+  "parent":{
+    "name":"SFX",
+    "path":"folders/Sounds/SFX.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"mus_warning.wav",
+  "type":1,
+  "volume":0.75,
+}

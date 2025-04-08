@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"mus_ground",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":0,
+  "bitRate":64,
+  "compression":2,
+  "conversionMode":0,
+  "duration":76.65,
+  "name":"mus_ground",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"mus_ground.ogg",
+  "type":1,
+  "volume":0.93,
+}

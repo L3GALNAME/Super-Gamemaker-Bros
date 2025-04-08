@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"mus_gameOver",
+  "audioGroupId":{
+    "name":"audiogroup_mus2",
+    "path":"audiogroups/audiogroup_mus2",
+  },
+  "bitDepth":0,
+  "bitRate":64,
+  "compression":2,
+  "conversionMode":0,
+  "duration":3.774376,
+  "name":"mus_gameOver",
+  "parent":{
+    "name":"mus2",
+    "path":"folders/Sounds/mus2.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"mus_gameOver.wav",
+  "type":1,
+  "volume":0.75,
+}

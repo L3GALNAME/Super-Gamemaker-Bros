@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"sfx_flagpole",
+  "audioGroupId":{
+    "name":"audiogroup_sfx",
+    "path":"audiogroups/audiogroup_sfx",
+  },
+  "bitDepth":0,
+  "bitRate":64,
+  "compression":2,
+  "conversionMode":0,
+  "duration":1.171519,
+  "name":"sfx_flagpole",
+  "parent":{
+    "name":"SFX",
+    "path":"folders/Sounds/SFX.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"sfx_flagpole.wav",
+  "type":1,
+  "volume":1.0,
+}

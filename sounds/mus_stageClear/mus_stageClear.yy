@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"mus_stageClear",
+  "audioGroupId":{
+    "name":"audiogroup_mus2",
+    "path":"audiogroups/audiogroup_mus2",
+  },
+  "bitDepth":0,
+  "bitRate":64,
+  "compression":2,
+  "conversionMode":0,
+  "duration":5.641497,
+  "name":"mus_stageClear",
+  "parent":{
+    "name":"mus2",
+    "path":"folders/Sounds/mus2.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"mus_stageClear.wav",
+  "type":1,
+  "volume":0.75,
+}

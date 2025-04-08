@@ -1,0 +1,4 @@
+/// @description Insert description here
+/// @description Insert description here
+frame = 0;
+animSpeed = 7;
