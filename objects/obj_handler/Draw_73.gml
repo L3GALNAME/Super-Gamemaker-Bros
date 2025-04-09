@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Mario transitions/Pause screen
 if (room == rm_transition) { exit; }
 if paused {
     if !surface_exists(paused_surf) {
@@ -34,7 +34,10 @@ if paused {
 						if (objectVars[6] > 6) { objectVars[6] = 6; }
 					} else {
 						pauseAnim = true;
-						room_restart()
+						levelComplete = true;
+						//room_restart();
+						lives--;
+						room = rm_transition;
 					}
 					
 					// Apply Position

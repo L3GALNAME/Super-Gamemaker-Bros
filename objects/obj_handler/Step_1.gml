@@ -28,7 +28,7 @@ if (room == rm_transition) {
 
 	global.time[0][0] = floor((get_timer() - global.time[0][1]) / 100000);
 	
-	if keyboard_check_pressed(vk_space) {
+	if (keyboard_check_pressed(vk_space) && !levelComplete) {
 	    paused = !paused;
 		if !audio_is_playing(sfx_pause) { audio_play_sound(sfx_pause, 100, false); }
 		// Music set
@@ -76,13 +76,16 @@ if (room == rm_transition) {
 		global.time[1][1] = global.time[1][0] - ((global.time[0][0] - global.time[2][2]) / 4);
 	} else {
 		if (global.time[1][1] > 0 and !instance_exists(obj_player)) {
+			// Level ending
 			global.time[1][1]--;
 			score += 50;
 			if (audio_sound_get_track_position(global.sound) >= 0.05) {
 				audio_sound_set_track_position(global.sound, 1/60);
 			}
-		} else if (global.time[1][1] <= 0 and !audio_is_playing(global.sound)) {
+		} else if (global.time[1][1] <= 0 and !audio_is_playing(global.sound) and !instance_exists(obj_fireworkSpawn)) {
+			// Spawn castle Flag
 			global.sound = sfx_coin;
+			if instance_exists(obj_camera) { instance_create_layer(obj_camera.x + 135, 134, "Instances_Back", obj_fireworkSpawn, { value : thing }); }
 		}
 		global.time[1][1] = clamp(global.time[1][1], 0, 400.0);
 	}

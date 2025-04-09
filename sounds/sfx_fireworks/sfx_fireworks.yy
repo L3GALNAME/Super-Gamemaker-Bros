@@ -9,7 +9,7 @@
   "bitRate":64,
   "compression":2,
   "conversionMode":0,
-  "duration":0.421406,
+  "duration":0.42140588,
   "name":"sfx_fireworks",
   "parent":{
     "name":"SFX",

@@ -1,10 +1,10 @@
-/// @description Insert description here
+/// @description Control Player
 if (place_meeting(x, y+4, obj_collision) and state) {
 	y = 172;
 	state = false;
 	score += scored
 	if instance_exists(obj_player) { 
-		global.cameraVar[5] = obj_camera;
+		//global.cameraVar[5] = obj_camera;
 		with obj_player {
 			syReal = 0;
 			timer = 10;
@@ -12,9 +12,10 @@ if (place_meeting(x, y+4, obj_collision) and state) {
 			dir = preD;
 			frame = 0;
 			x += 16
+			global.cameraVar[13] = -12;
 		}
 	}
-} if place_meeting(x, y+5, obj_collision) {
+} else if place_meeting(x, y+5, obj_collision) {
 	if (instance_exists(obj_player) and obj_player.state != "Win") {
 		if (!audio_is_playing(mus_stageClear) and obj_player.onGround) {
 			if !audio_group_is_loaded(audiogroup_mus2) {
@@ -29,7 +30,10 @@ if (place_meeting(x, y+4, obj_collision) and state) {
 				global.cameraVar[5] = obj_camera;
 				global.cameraVar[13] = 0;
 				//audio_play_sound(sfx_coin, 75, false);
-				global.sound = audio_play_sound(sfx_coin, 75, false);;
+				global.sound = audio_play_sound(sfx_coin, 75, false);
+				var timeStr = $"{floor(global.time[1][1])}";
+				obj_handler.thing = string_char_at(timeStr, string_length(timeStr));
+				global.cameraVar[5] = obj_camera;
 				instance_destroy();
 			}
 		}

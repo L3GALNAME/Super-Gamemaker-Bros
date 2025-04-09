@@ -112,6 +112,7 @@ function mushroom_place(trans=0) {
 				// 1UP
 				instance_create_layer(bbox_left, bbox_top-16, "Front", obj_scorePopup, { frame : 10, value : 0, syReal : -1 })
 				audio_play_sound(sfx_1up, 75, false);
+				lives++;
 			} else {
 				// Super Mushroom
 				instance_create_layer(bbox_left, bbox_top-16, "Front", obj_scorePopup, { frame : 5, value : 1000, syReal : -1 })

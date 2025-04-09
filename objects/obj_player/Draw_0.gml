@@ -1,6 +1,6 @@
 /// @description Draw Self
 //draw_txt(x-16, y-48, $"{x}, {y}");
-//draw_txt(x-16, y-32, sxReal);
+//draw_txt(x-16, y-32, timer);
 global.colorMod[0][0].SetShader(0+(2*item));
 
 //if !global.canMove {

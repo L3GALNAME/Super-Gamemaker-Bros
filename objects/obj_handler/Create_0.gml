@@ -128,12 +128,15 @@ global.points = [
 ];
 global.coins = 0;
 score = 0;
+lives = 3;
 
 levelComplete = true;
 global.sound = sfx_coin;
 
 roomTrans = rm_1_1;
+//roomTrans = asset_get_index("rm_1_1");
 room = rm_transition;
+//room = roomTrans;
 
 // Audio
 #region audio setting

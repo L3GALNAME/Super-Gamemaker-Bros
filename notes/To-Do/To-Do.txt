@@ -32,6 +32,6 @@ LIST OF THINGS TO MAKE MAR-O
 
 // Transitions //
 //// Main Menu					// :(
-//// Level start screen			// :(
-//// Fireworks					// :(
+//// Level start screen			// DONE
+//// Fireworks					// DONE
 

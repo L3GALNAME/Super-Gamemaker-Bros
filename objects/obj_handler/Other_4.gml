@@ -20,13 +20,26 @@ if (room != rm_start) {
 			//global.time[2] = [0, 0, 0, 0];
 		break;
 		case rm_1_1:
-			global.palIdx = 2;
+			global.palIdx = 0;
 			if levelComplete {
 				global.time[0][1] = get_timer();
 				global.time[1][0] = 400.0;
 				global.time[2] = [0, 0, 0, 0];
 				levelComplete = false;
-				global.startPos = [48, 208];
+				//global.startPos = [48, 208];
+				//global.startPos = [1336, 80];
+				global.startPos = [3016, 80];
+			}
+		break;
+		case rm_1_2:
+			global.palIdx = 1;
+			if levelComplete {
+				global.canMove = true;
+				global.time[0][1] = get_timer();
+				global.time[1][0] = 400.0;
+				global.time[2] = [0, 0, 0, 0];
+				levelComplete = false;
+				global.startPos = [32, 48];
 				//global.startPos = [1336, 80];
 				//global.startPos = [3016, 80];
 			}

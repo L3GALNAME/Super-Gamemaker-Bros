@@ -9,7 +9,7 @@
   "bitRate":64,
   "compression":0,
   "conversionMode":0,
-  "duration":0.131474,
+  "duration":0.13147393,
   "name":"sfx_fireball",
   "parent":{
     "name":"SFX",
