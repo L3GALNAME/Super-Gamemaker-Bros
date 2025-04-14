@@ -34,7 +34,7 @@ if (room == rm_transition) {
 } else if (room == rm_title) {
 	// Score section
 	draw_txt(24, 8, "MARIO");
-	//draw_txt(24, 16, thing);
+	//draw_txt(24, 16, thing); 
 	draw_txt(24, 16, string_repeat("0", (6-string_length(scoreStr))) + scoreStr);
 	
 	// Coin section
