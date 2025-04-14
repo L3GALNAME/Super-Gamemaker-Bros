@@ -62,10 +62,12 @@ switch state {
 			case pipeD.RIGHT:
 				if (round(frame) >= 4) { frame = 1; }
 				x += 0.5;
+				image_alpha = timer > 30;
 			break;
 			case pipeD.LEFT:
 				if (round(frame) >= 4) { frame = 1; }
 				x -= 0.5;
+				image_alpha = timer > 30;
 			break;
 		}
 		timer--;
@@ -133,7 +135,8 @@ switch state {
 				}
             }
 			
-			mushroom_place(2 * (item<1));
+			mushroom_place(2 * !item[0]);
+			star_place(item[1]);
 			enemy_place();
 			coin_place();
         #endregion
@@ -179,7 +182,8 @@ switch state {
 				}
             }
 			
-			mushroom_place(2 * (item<1));
+			mushroom_place(2 * !item[0]);
+			star_place(item[1]);
 			enemy_place();
 			coin_place();
         #endregion
@@ -191,7 +195,7 @@ switch state {
 		}
 		
 		// Spawn fireball
-		if (global.ctrl[5] == 1 and item == 1) {
+		if (global.ctrl[5] == 1 and item[0]) {
 			audio_play_sound(sfx_fireball, 50, false);
 			instance_create_layer(x+(8*dir), bbox_top, layer, obj_fireball);
 			action = "fire";
@@ -229,6 +233,7 @@ switch state {
             }
 			
 			mushroom_place(1);
+			star_place(item[1]);
 			enemy_place();
 			coin_place();
         #endregion

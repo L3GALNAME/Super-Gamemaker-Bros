@@ -1,4 +1,6 @@
 /// @description Raise Flag and trigger end events
+if (room == rm_title) { exit; }
+
 y--;
 if (y <= 112) { 
 	y = 112;

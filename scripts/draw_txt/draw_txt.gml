@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function draw_txt(_x, _y, str=""){
+function draw_txt(_x, _y, str="", color=c_white){
     var xx = _x;
     var yy = _y;
     var char = "";
@@ -22,7 +22,7 @@ function draw_txt(_x, _y, str=""){
             }
         }
         //draw letter and change variables
-        draw_sprite_ext(spr_SMBFont, string_pos(char, soup)-1, xx, yy, 1, 1, 0, c_white, 1);
+        draw_sprite_ext(spr_SMBFont, string_pos(char, soup)-1, xx, yy, 1, 1, 0, color, 1);
         xx += 8;
     }
 }

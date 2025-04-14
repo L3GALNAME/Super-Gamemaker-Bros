@@ -46,7 +46,7 @@ if (!hit and state) {
 	if (enemy and enemy.action != "flip" ) {
 		audio_play_sound(sfx_kick, 50, false);
 		with enemy {
-			instance_create_layer(x, bbox_top-16, "Front", obj_scorePopup, { frame : 0, value : 100, syReal : -0.75 });
+			instance_create_layer(x, bbox_top-16, "Front", obj_scorePopup, { value : 100, syReal : -0.75 });
 			y -= 16;
 			syReal = -3;
 			fallCap = 3;

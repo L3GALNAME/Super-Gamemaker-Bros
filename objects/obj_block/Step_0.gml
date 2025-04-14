@@ -16,6 +16,9 @@ if (hit) {
                     type : 1, state : 1, flower : false
                 });
             break;
+			case Items.STAR:
+				instance_create_layer(x+8, y, "Instances_Back", obj_star, { state : 1 });
+			break;
         }
     }
     thing += 0.3;

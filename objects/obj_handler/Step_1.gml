@@ -5,13 +5,19 @@ if global.canMove {
 	        global.ctrl[i/2]++;
 	    } else { global.ctrl[i/2] = 0; }
 	}
+} else {
+	for(var i=0; i<ctrlLen*2; i+=2) {
+	    if (keyboard_check(global.keybinds[i]) or keyboard_check(global.keybinds[i+1])) {
+	        global.ctrl2[i/2]++;
+	    } else { global.ctrl2[i/2] = 0; }
+	}
 }
 
 if keyboard_check_pressed(ord("R")) { game_restart() }
 
-//if (keyboard_check_pressed(ord("B")) and instance_exists(obj_player)) {
-//	global.canMove = !global.canMove;
-//}
+if keyboard_check_pressed(ord("B")) {
+	global.canMove = !global.canMove;
+}
 
 if (room == rm_transition) {
 	thing--;
@@ -28,11 +34,80 @@ if (room == rm_transition) {
 
 	global.time[0][0] = floor((get_timer() - global.time[0][1]) / 100000);
 	
-	if (keyboard_check_pressed(vk_space) && !levelComplete) {
+	if (keyboard_check_pressed(vk_space) && !levelComplete && room != rm_title) {
 	    paused = !paused;
+		if paused { audio_stop_sound(sfx_pause); }
 		if !audio_is_playing(sfx_pause) { audio_play_sound(sfx_pause, 100, false); }
 		// Music set
 		music_toggle();
+	} else if (room == rm_title) {
+		score = 0;
+		global.coins = 0;
+		
+		#region title timing
+			switch thing {
+				case 0:
+				case 909:
+				case 970:
+				case 1130:
+				case 1399:
+					event_user(0);
+				break;
+				
+				case 480:
+				case 1134:
+					global.ctrl[3] = 2;
+				break;
+				
+				case 932:
+				case 974:
+					global.ctrl[5] = 2;
+					global.ctrl[3] = 2;
+				break;
+				
+				case 629:
+				case 711:
+				case 814:
+				case 904:
+				case 981:
+				case 1054:
+				case 1219:
+					global.ctrl[0] = 2;
+				break;
+				
+				case 640:
+				case 667:
+				case 721:
+				case 834:
+				case 1000:
+				case 1074:
+				case 1239:
+					global.ctrl[0] = 0;
+				break;
+				
+				case 644:
+				case 782:
+				case 1349:
+					global.ctrl[3] = 0;
+					global.ctrl[1] = 2;
+				break;
+				
+				case 664:
+					global.ctrl[3] = 2;
+					global.ctrl[1] = 0;
+					global.ctrl[0] = 2;
+				break;
+				
+			}
+			thing++;
+		#endregion
+		
+		if (array_contains(global.ctrl2, true) && thing >= 480) { room = rm_transition; }
+		else if (global.ctrl2[4] == 1) {
+			roomTrans = rm_1_1;
+			room = rm_transition;
+			global.canMove = true;
+		}
 	}
 	
 	if (pauseAnim) {
@@ -55,7 +130,7 @@ if (room == rm_transition) {
 	        paused_surf = -1;
 			sprite_delete(spr_custom);
 			spr_custom = -1;
-			global.canMove = true;
+			global.canMove = (room != rm_title);
 			
 			// Stored time lost
 			global.time[2][3] = global.time[2][2];

@@ -4,7 +4,7 @@ thing = 0;
 hit = false;
 smash = false;
 
-enum Items { EMPTY, COIN, MUSHROOM, FIRE_FLOWER, ONEUP }
+//enum Items { EMPTY, COIN, MUSHROOM, FIRE_FLOWER, ONEUP }
 item = Items.EMPTY;
 amount = 0;
 state = true; // State == false means empty block

@@ -1,5 +1,5 @@
 LIST OF THINGS TO MAKE MAR-O
-20/ 23 : 87%
+24/ 24 : 96%
 
 // Physics - DONE //
 
@@ -10,6 +10,7 @@ LIST OF THINGS TO MAKE MAR-O
 //// Transition to small/big	// DONE
 //// Transition to fire			// DONE
 //// Death animation			// DONE
+//// Invincibility				// DONE
 
 // Defeat enemies //
 //// Jump physics				// DONE
@@ -31,7 +32,7 @@ LIST OF THINGS TO MAKE MAR-O
 //// Walk into castle			// DONE
 
 // Transitions //
-//// Main Menu					// :(
+//// Main Menu					// DONE
 //// Level start screen			// DONE
 //// Fireworks					// DONE
 

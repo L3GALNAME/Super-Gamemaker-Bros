@@ -1,7 +1,7 @@
 /// @description big -> fire
 canMove = false;
 action = "transform";
-item = 1;
+item[0] = 1;
 frame = 0;
 animSpeed = 15/60;
 obj_handler.objectVars = [];

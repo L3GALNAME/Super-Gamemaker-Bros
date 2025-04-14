@@ -1,4 +1,6 @@
 /// @description Variable Init
+if (room == rm_title) { image_alpha = 0; exit; }
+
 spawn = true;
 timer = 95;
 thing = 0; // Used for Firework Placement

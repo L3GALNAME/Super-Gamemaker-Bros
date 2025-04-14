@@ -26,9 +26,9 @@ if (room != rm_start) {
 				global.time[1][0] = 400.0;
 				global.time[2] = [0, 0, 0, 0];
 				levelComplete = false;
-				//global.startPos = [48, 208];
-				//global.startPos = [1336, 80];
-				global.startPos = [3016, 80];
+				global.startPos = [48, 208];
+				//global.startPos = [1448, 208];
+				//global.startPos = [3016, 80];
 			}
 		break;
 		case rm_1_2:
@@ -44,38 +44,37 @@ if (room != rm_start) {
 				//global.startPos = [3016, 80];
 			}
 		break;
+		case rm_title:
+			global.palIdx = 0;
+			global.startPos = [48, 208];
+			thing = 0;
+		break;
 		case rm_transition:
 			thing = 150;
+			if (roomTrans == rm_title) {
+				lives = 3;
+				thing = 30;
+			}
+			//thing = 150;
+			//thing = 15;
+			event_user(0);
 			exit;
 	}
 	
-	// Music set
-	switch global.palIdx {
-		case 0:
-			if !audio_is_playing(mus_ground) { audio_play_sound(mus_ground, 100, true); }
-		break;
-		case 1:
-			if !audio_is_playing(mus_underground) { audio_play_sound(mus_underground, 100, true); }
-		break;
-		case 2:
-			if !audio_is_playing(mus_castle) { audio_play_sound(mus_castle, 100, true); }
-		break;
-		case 3:
-			if !audio_is_playing(mus_underwater) { audio_play_sound(mus_underwater, 100, true); }
-		break;
-	}
+	// Music/Background set
+	music_set();
 	
-	var background = layer_background_get_id("Background");
-	switch global.palIdx {
-		case 0:
-		case 3:
-			layer_background_blend(background, #9494FF);
-			break;
-		case 1:
-		case 2:
-			layer_background_blend(background, #000000);
-			break;
-	}
+	//var background = layer_background_get_id("Background");
+	//switch global.palIdx {
+	//	case 0:
+	//	case 3:
+	//		layer_background_blend(background, #9494FF);
+	//		break;
+	//	case 1:
+	//	case 2:
+	//		layer_background_blend(background, #000000);
+	//		break;
+	//}
 	
 	instance_create_depth(0, 0, layer_get_depth(global.layers[0]) + 1, obj_palSetBegin, {
         palette : 0,
@@ -105,27 +104,31 @@ if (room != rm_start) {
 			var pv = playerVars
 			with obj_player { 
 				if (pv == "Fire") {
-					item = 1;
+					item[0] = 1;
 					pv = "Big";
 				}
 				//item = 1;
 				state = pv;
-				sprite = pv == "Big" ? spr_marioBig : spr_marioBig;
+				sprite = pv == "Big" ? spr_marioBig : spr_marioSmall;
+				
+				if (room == rm_title) { global.canMove = false; }
 			}
 			exit;
 		}
 		var pv = playerVars;
 		with obj_player {
 			audio_play_sound(sfx_pipe, 75, false);
-			canMove = pv[0]; state = pv[1]; action = pv[2];
+			global.canMove = pv[0]; state = pv[1]; action = pv[2];
 			pipeDir = pv[3]; frame = pv[4]; animSpeed = pv[5];
 			layer = layer_get_id("Instances_Back");
 			timer = 64;
 			if (pv[6] == "Fire") {
-				item = 1;
+				item[0] = 1;
 				pv[6] = "Big";
 			}
 			sprite = pv[6] == "Big" ? spr_marioBig : spr_marioSmall;
+			
+			if (room == rm_title) { global.canMove = false; }
 		}
 		playerVars = pv[6];
 	}

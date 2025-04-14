@@ -9,7 +9,7 @@
   "bitRate":64,
   "compression":2,
   "conversionMode":0,
-  "duration":5.641497,
+  "duration":5.6414967,
   "name":"mus_stageClear",
   "parent":{
     "name":"mus2",

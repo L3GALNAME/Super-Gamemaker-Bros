@@ -9,7 +9,7 @@
   "bitRate":64,
   "compression":2,
   "conversionMode":0,
-  "duration":3.190385,
+  "duration":3.1802268,
   "name":"mus_invincible",
   "parent":{
     "name":"Sounds",

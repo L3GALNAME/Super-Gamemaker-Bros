@@ -1,5 +1,17 @@
 /// @description Mario transitions/Pause screen
 if (room == rm_transition) { exit; }
+if (room == rm_title && camera_get_view_x(global.camera) < 240) {
+	var scoreStr = $"{score}";
+	
+	draw_sprite(spr_logo, 0, 40, 32);
+	draw_txt(104, 120, "©1985 NINTENDO", #ffcec5);
+	draw_txt(88, 144, "1 PLAYER GAME");
+	draw_txt(88, 160, "OPTIONS");
+	draw_txt(96, 184, "TOP- " + (string_repeat("0", (6-string_length(scoreStr))) + scoreStr));
+	
+	draw_sprite(spr_cursor, 0, 72, 144);
+}
+
 if paused {
     if !surface_exists(paused_surf) {
         if (paused_surf == -1) { 

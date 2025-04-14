@@ -55,7 +55,7 @@ function enterPipe(_dir) {
 	}
 	if (playerState == "Big" or playerState == "Crouch") { 
 		marioState = "Big";
-		if (obj_player.item == 1) { marioState = "Fire"; }
+		if (obj_player.item[0] == 1) { marioState = "Fire"; }
 	}
 	dir = -1;
 }

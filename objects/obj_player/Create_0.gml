@@ -35,7 +35,7 @@ timer = 0;
 frame = 0;
 
 luigi = 0;
-item = 0; // 0 for none, 1 for fire, 2 for star
+item = [0, 0, 0]; // 0 for none, [0] for fire, [1] for star
 
 #region Functions
 function mario_run(_absX, _dir2, _xdir) {
@@ -110,12 +110,11 @@ function mushroom_place(trans=0) {
 			mushType = type;
 			if mushType {
 				// 1UP
-				instance_create_layer(bbox_left, bbox_top-16, "Front", obj_scorePopup, { frame : 10, value : 0, syReal : -1 })
+				instance_create_layer(bbox_left, bbox_top-16, "Front", obj_scorePopup, { value : "1UP", syReal : -1 })
 				audio_play_sound(sfx_1up, 75, false);
-				lives++;
 			} else {
 				// Super Mushroom
-				instance_create_layer(bbox_left, bbox_top-16, "Front", obj_scorePopup, { frame : 5, value : 1000, syReal : -1 })
+				instance_create_layer(bbox_left, bbox_top-16, "Front", obj_scorePopup, { value : 1000, syReal : -1 })
 			}
 			instance_destroy();
 		}
@@ -134,20 +133,58 @@ function mushroom_place(trans=0) {
 	}	
 }
 
+function star_place(inv=0) {
+	var star = instance_place(x, y, obj_star);
+	if star {
+		with star {
+			instance_destroy();
+		}
+		item[1] = 60 * 12;
+		if audio_is_playing(sfx_powerup) {
+			audio_stop_sound(sfx_powerup);
+			audio_play_sound(sfx_powerup, 75, false);
+		}
+		if !string_pos(audio_get_name(global.sound), "mus_invincible") {
+			audio_stop_sound(global.sound);
+			global.sound = audio_play_sound(mus_invincible, 100, true);
+		}
+	}
+}
+
 function enemy_place() {
 	var enemy = instance_place(x+sxReal, bbox_bottom+syReal, obj_enemy);
-	if enemy {
-		if (enemy.hitable[0] and enemy.state and (!place_meeting(bbox_right, bbox_bottom, obj_enemy) and !place_meeting(bbox_left, bbox_bottom, obj_enemy))) {
+	if (enemy && enemy.state) {
+		if item[1] {
+			var scored = global.points[item[2]];
+			if (scored == "1UP") { 
+				if audio_is_playing(sfx_1up) { audio_stop_sound(sfx_1up); }
+				audio_play_sound(sfx_1up, 50, false); 
+			} else {
+				audio_play_sound(sfx_kick, 50, false);
+			}
+			
+			with enemy {
+				instance_create_layer(x, bbox_top-16, "Front", obj_scorePopup, { value : scored, syReal : -0.75 });
+				y -= 16;
+				syReal = -3;
+				fallCap = 3;
+				action = "flip";
+				state = false;
+			}
+			
+			item[2]++;
+			item[2] = clamp(item[2], 0, 10);
+		} else if (enemy.hitable[0] and (!place_meeting(bbox_right, bbox_bottom, obj_enemy) and !place_meeting(bbox_left, bbox_bottom, obj_enemy))) {
 			if (enemy.action == "shell") { exit; }
 			syReal = jumpSpd + 0.5;
 			with enemy {
-				instance_create_layer(x, bbox_top-16, "Front", obj_scorePopup, { frame : 0, value : 100, syReal : -0.75 })
+				instance_create_layer(x, bbox_top-16, "Front", obj_scorePopup, { value : 100, syReal : -0.75 })
 				state = false;
 				frame = 0;
 				animSpeed = 0;
 			}
 			audio_play_sound(sfx_stomp, 50, false);
-		} else if (iframe <= 0 and enemy.state) {
+		} else if (iframe <= 0) {
 			if (enemy.action == "shell") {
 				if !audio_is_playing(sfx_kick) { audio_play_sound(sfx_kick, 50, false); }
 				exit;
@@ -156,7 +193,7 @@ function enemy_place() {
 			switch state {
 				case "Crouch":
 				case "Big":
-					item = 0;
+					item[0] = 0;
 					event_user(1);
 				break;
 				case "Small":

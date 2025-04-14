@@ -5,7 +5,7 @@ if flower {
 		case 0:
 			// Player Color
 			var item = instance_exists(obj_player);
-			if item { item = obj_player.item; }
+			if item { item = obj_player.item[0]; }
 			global.colorMod[1][4].SetShader(0+(2*item));
 		break;
 		case 1:

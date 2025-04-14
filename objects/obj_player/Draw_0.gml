@@ -1,7 +1,33 @@
 /// @description Draw Self
 //draw_txt(x-16, y-48, $"{x}, {y}");
-//draw_txt(x-16, y-32, timer);
-global.colorMod[0][0].SetShader(0+(2*item));
+//draw_txt(x-16, y-32, item[1]);
+if item[1] {
+	switch (floor(item[1]/2) mod 4) {
+		case 0:
+			global.colorMod[0][0].SetShader(0+(2*item[0]));
+		break;
+		case 1:
+			global.colorMod[0][0].SetShader(3 + (global.palIdx*3));
+		break;
+		case 2:
+			global.colorMod[0][0].SetShader(3 + ((global.palIdx*3)+1) );
+		break;
+		case 3:
+			global.colorMod[0][0].SetShader(3 + ((global.palIdx*3)+2) );
+		break;
+	}
+	item[1]--;
+	if (item[1] <= 120 && item[1] > 60) {
+		if string_pos(audio_get_name(global.sound), "mus_invincible") {
+			audio_stop_sound(global.sound);
+			with obj_handler { music_set(); }
+		}
+	} else if (item[1] <= 0) {
+		item[1] = 0;
+	}
+} else {
+	global.colorMod[0][0].SetShader(0+(2*item[0]));
+}
 
 //if !global.canMove {
 if (action == "pipe") {

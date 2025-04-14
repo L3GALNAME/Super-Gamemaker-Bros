@@ -54,7 +54,8 @@ thing = 0;
     global.keybinds[9] = vk_enter;
     global.keybinds[10] = ord("X");
     global.keybinds[11] = vk_shift;
-    global.ctrl = [0, 0, 0, 0, 0, 0];
+    global.ctrl = [0, 0, 0, 0, 0, 0]; //  This is for player control
+    global.ctrl2 = [0, 0, 0, 0, 0, 0]; // This is for UI control
     
     #macro ctrlLen array_length(global.ctrl)
 #endregion
@@ -91,13 +92,14 @@ global.layers = array_create(0);
         ColorModFromSprite(pal_coin, 0, true),
         ColorModFromSprite(pal_flower, 0, true),
         ColorModFromSprite(pal_mushroom, 0, true),
+        ColorModFromSprite(pal_star, 0, true),
     ];
 #endregion
 
 surface_resize(application_surface, 256, 224)
 
 ////ALL FONT CHARACTERS IN ORDER DO NOT TOUCH
-#macro soup " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
+#macro soup " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_©"
 
 enum pipeD { DOWN, UP, LEFT, RIGHT };
 
@@ -113,6 +115,8 @@ global.canMove = true;
 
 frame = 0;
 
+enum Items { EMPTY, COIN, MUSHROOM, FIRE_FLOWER, ONEUP, STAR }
+
 global.points = [
 	100,
 	200,
@@ -124,7 +128,7 @@ global.points = [
 	4000,
 	5000,
 	8000,
-	10000,
+	"1UP",
 ];
 global.coins = 0;
 score = 0;
@@ -133,9 +137,9 @@ lives = 3;
 levelComplete = true;
 global.sound = sfx_coin;
 
-roomTrans = rm_1_1;
+roomTrans = rm_title;
 //roomTrans = asset_get_index("rm_1_1");
-room = rm_transition;
+room = rm_title;
 //room = roomTrans;
 
 // Audio
@@ -162,35 +166,39 @@ room = rm_transition;
 	audio_group_load(audiogroup_sfx)
 
 	function music_toggle() {
+		if !audio_is_paused(global.sound) {
+			audio_pause_sound(global.sound);
+		} else {
+			audio_resume_sound(global.sound);
+		}
+	}
+	
+	function music_set() {
+		var background = layer_background_get_id("Background");
 		switch global.palIdx {
 			case 0:
-				if !audio_is_paused(mus_ground) {
-					audio_pause_sound(mus_ground);
-				} else {
-					audio_resume_sound(mus_ground);
-				}
+				if !audio_is_playing(mus_ground) { global.sound = audio_play_sound(mus_ground, 100, true); }
+				layer_background_blend(background, #9494FF);
 			break;
 			case 1:
-				if !audio_is_paused(mus_underground) {
-					audio_pause_sound(mus_underground);
-				} else {
-					audio_resume_sound(mus_underground);
-				}
+				if !audio_is_playing(mus_underground) { global.sound = audio_play_sound(mus_underground, 100, true); }
+				layer_background_blend(background, #000000);
 			break;
 			case 2:
-				if !audio_is_paused(mus_castle) {
-					audio_pause_sound(mus_castle);
-				} else {
-					audio_resume_sound(mus_castle);
-				}
+				if !audio_is_playing(mus_castle) { global.sound = audio_play_sound(mus_castle, 100, true); }
+				layer_background_blend(background, #000000);
 			break;
 			case 3:
-				if !audio_is_paused(mus_underwater) {
-					audio_pause_sound(mus_underwater);
-				} else {
-					audio_resume_sound(mus_underwater);
-				}
+				if !audio_is_playing(mus_underwater) { global.sound = audio_play_sound(mus_underwater, 100, true); }
+				layer_background_blend(background, #9494FF);
 			break;
+		}
+		
+		if (room == rm_title) {
+			audio_stop_sound(global.sound);
+			audio_group_set_gain(audiogroup_sfx, 0, 0);
+		} else {
+			audio_group_set_gain(audiogroup_sfx, 1, 0);
 		}
 	}
 #endregion
